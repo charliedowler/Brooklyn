@@ -7,12 +7,22 @@
 //
 
 import AVKit
+import os.log
+
+private let logger = Logger(subsystem: "oedrommcarrasco.brooklyn", category: "AVPlayerItem")
 
 // MARK: Init
 extension AVPlayerItem {
 
     convenience init?(video: Animation, extension ext: Extension, for caller: AnyClass) {
-        guard let url = Bundle(for: caller).url(forResource: video.rawValue, withExtension: ext.rawValue) else { return nil }
+        let bundle = Bundle(for: caller)
+        logger.info("Looking for video \(video.rawValue) in bundle: \(bundle.bundlePath)")
+
+        guard let url = bundle.url(forResource: video.rawValue, withExtension: ext.rawValue) else {
+            logger.error("Failed to find video: \(video.rawValue).\(ext.rawValue)")
+            return nil
+        }
+        logger.info("Found video at: \(url.path)")
         self.init(url: url)
     }
 }

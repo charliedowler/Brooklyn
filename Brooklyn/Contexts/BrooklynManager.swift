@@ -11,6 +11,7 @@ import ScreenSaver
 import AVKit
 
 // MARK: BrooklynManager
+@MainActor
 final class BrooklynManager {
     
     private enum Constant {
@@ -23,9 +24,9 @@ final class BrooklynManager {
     let player: LoopPlayer
     
     // MARK: Private Set Properties
-    private (set) var selectedAnimations: [Animation]
-    private (set) var numberOfLoops: Int
-    private (set) var hasRandomOrder: Bool
+    private(set) var selectedAnimations: [Animation]
+    private(set) var numberOfLoops: Int
+    private(set) var hasRandomOrder: Bool
     
     // MARK: Init
     init(mode: DisplayMode) {

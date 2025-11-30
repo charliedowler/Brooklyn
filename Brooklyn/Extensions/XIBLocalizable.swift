@@ -9,6 +9,7 @@
 import Foundation
 import Cocoa
 
+@MainActor
 protocol XIBLocalizable {
     var xibLocKey: String? { get set }
 }

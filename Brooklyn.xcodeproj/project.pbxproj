@@ -185,6 +185,7 @@
 		53689939221C66BD0071D26F /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53689936221C66BD0071D26F /* Animation.swift */; };
 		5368993D221C66C10071D26F /* NSTableView+Dequeue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5368993C221C66C10071D26F /* NSTableView+Dequeue.swift */; };
 		53689948221C66F60071D26F /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53689945221C66F60071D26F /* PreferencesWindowController.swift */; };
+		CAFE0002202411300000BABE /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFE0001202411300000BABE /* PreferencesView.swift */; };
 		5368994E221C68790071D26F /* AVPlayerItem+Init.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5368994D221C68790071D26F /* AVPlayerItem+Init.swift */; };
 		53689959221C6DA60071D26F /* AnimationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53689958221C6DA60071D26F /* AnimationCellView.swift */; };
 		53E840DA221D9A8F005FA65E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53E840D9221D9A8F005FA65E /* Assets.xcassets */; };
@@ -296,6 +297,7 @@
 		53689936221C66BD0071D26F /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		5368993C221C66C10071D26F /* NSTableView+Dequeue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSTableView+Dequeue.swift"; sourceTree = "<group>"; };
 		53689945221C66F60071D26F /* PreferencesWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		CAFE0001202411300000BABE /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		5368994D221C68790071D26F /* AVPlayerItem+Init.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayerItem+Init.swift"; sourceTree = "<group>"; };
 		53689958221C6DA60071D26F /* AnimationCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationCellView.swift; sourceTree = "<group>"; };
 		53E840D5221D9A8E005FA65E /* Canvas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Canvas.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -339,6 +341,7 @@
 			children = (
 				20B669C1221DEE3800645925 /* PreferencesWindowController.xib */,
 				53689945221C66F60071D26F /* PreferencesWindowController.swift */,
+				CAFE0001202411300000BABE /* PreferencesView.swift */,
 				53689958221C6DA60071D26F /* AnimationCellView.swift */,
 			);
 			path = Preferences;
@@ -794,6 +797,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53689948221C66F60071D26F /* PreferencesWindowController.swift in Sources */,
+				CAFE0002202411300000BABE /* PreferencesView.swift in Sources */,
 				20CAF50621891FCE0086AED8 /* BrooklynView.swift in Sources */,
 				5368993D221C66C10071D26F /* NSTableView+Dequeue.swift in Sources */,
 				206ECE332221869400971C99 /* URLType.swift in Sources */,
@@ -888,12 +892,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.2;
+								SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -938,12 +941,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_SWIFT3_OBJC_INFERENCE = Off;
-				SWIFT_VERSION = 4.2;
+								SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};
@@ -952,6 +954,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Brooklyn/Brooklyn.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -964,13 +967,13 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 2.1.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = oedrommcarrasco.brooklyn;
 				PRODUCT_NAME = Brooklyn;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Debug;
@@ -980,6 +983,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = Brooklyn/Brooklyn.entitlements;
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -992,12 +996,12 @@
 					"@executable_path/../Frameworks",
 					"@loader_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				MARKETING_VERSION = 2.1.0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 3.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = oedrommcarrasco.brooklyn;
 				PRODUCT_NAME = Brooklyn;
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				WRAPPER_EXTENSION = saver;
 			};
 			name = Release;
@@ -1023,14 +1027,14 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pedrommcarrasco.canvas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Debug;
 		};
@@ -1055,12 +1059,12 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pedrommcarrasco.canvas;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 6.0;
 			};
 			name = Release;
 		};

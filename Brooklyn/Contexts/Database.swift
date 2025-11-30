@@ -7,9 +7,15 @@
 //
 
 import ScreenSaver
+import os.log
+
+private let logger = Logger(subsystem: "oedrommcarrasco.brooklyn", category: "Database")
 
 // MARK: Database
 struct Database {
+
+    // MARK: Constant
+    private static let bundleIdentifier = "oedrommcarrasco.brooklyn"
 
     // MARK: Key
     fileprivate enum Key {
@@ -20,9 +26,8 @@ struct Database {
 
     // MARK: Properties
     static var standard: ScreenSaverDefaults {
-        guard let bundleIdentifier = Bundle(for: BrooklynManager.self).bundleIdentifier,
-            let database = ScreenSaverDefaults(forModuleWithName: bundleIdentifier)
-            else { fatalError("Failed to retrieve database") }
+        guard let database = ScreenSaverDefaults(forModuleWithName: bundleIdentifier)
+            else { fatalError("Failed to retrieve database for \(bundleIdentifier)") }
 
         database.register(defaults:
             [Key.selectedAnimations: [Animation.original.rawValue],
@@ -39,27 +44,36 @@ struct Database {
 extension ScreenSaverDefaults {
 
     var selectedAnimations: [Animation] {
-        guard let rawValues = array(forKey: Database.Key.selectedAnimations) as? [String] else { return [.original] }
+        guard let rawValues = array(forKey: Database.Key.selectedAnimations) as? [String] else {
+            logger.info("No saved animations, using default")
+            return [.original]
+        }
         let animations = rawValues.compactMap(Animation.init)
+        logger.info("Loaded \(animations.count) animations")
         return animations.isEmpty ? [.original] : animations
     }
 
     func set(animations: [Animation]) {
+        logger.info("Saving \(animations.count) animations")
         set(animations.map { $0.rawValue }, for: Database.Key.selectedAnimations)
     }
-    
+
     var numberOfLoops: Int {
-        return integer(forKey: Database.Key.numberOfLoops)
+        let loops = integer(forKey: Database.Key.numberOfLoops)
+        logger.info("Loaded numberOfLoops: \(loops)")
+        return loops
     }
-    
+
     func set(numberOfLoops: Int) {
         set(numberOfLoops, for: Database.Key.numberOfLoops)
     }
-    
+
     var hasRandomOrder: Bool {
-        return bool(forKey: Database.Key.randomOrder)
+        let random = bool(forKey: Database.Key.randomOrder)
+        logger.info("Loaded hasRandomOrder: \(random)")
+        return random
     }
-    
+
     func set(hasRandomOrder: Bool) {
         set(hasRandomOrder, for: Database.Key.randomOrder)
     }
@@ -67,9 +81,10 @@ extension ScreenSaverDefaults {
 
 // MARK: - ScreenSaverDefaults's Private Functions
 private extension ScreenSaverDefaults {
-    
+
     func set(_ object: Any, for key: String) {
         set(object, forKey: key)
+        // Required for screensaver extension to persist immediately
         synchronize()
     }
 }

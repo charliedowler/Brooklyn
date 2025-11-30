@@ -7,10 +7,14 @@
 //
 
 import AVFoundation
+import Combine
 
 // MARK: - LoopPlayer
 final class LoopPlayer: AVQueuePlayer {
-    
+
+    // MARK: Private Properties
+    private var cancellables = Set<AnyCancellable>()
+
     // MARK: Lifecycle
     init(items: [Animation], numberOfLoops: Int, shouldRandomize: Bool) {
         let items = (shouldRandomize ? items.shuffled() : items)
@@ -19,24 +23,19 @@ final class LoopPlayer: AVQueuePlayer {
                 $0.append(contentsOf: Array(copy: item, count: numberOfLoops))
             }
             .prepareForQueue()
-        
+
         super.init(items: items)
         observe()
     }
-    
+
     override init() {
         super.init()
-    }
-    
-    
-    deinit {
-        unobserve()
     }
 }
 
 // MARK: - Actions
 extension LoopPlayer {
-    
+
     func play(_ animation: Animation) {
         guard let item = AVPlayerItem(video: animation, extension: .mp4, for: LoopPlayer.self) else { return }
         actionAtItemEnd = .none
@@ -50,21 +49,17 @@ extension LoopPlayer {
 
 // MARK: - Observers
 private extension LoopPlayer {
-    
+
     func observe() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(playerItemDidFinish),
-                                               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
-                                               object: nil)
+        NotificationCenter.default
+            .publisher(for: .AVPlayerItemDidPlayToEndTime)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in
+                self?.playerItemDidFinish()
+            }
+            .store(in: &cancellables)
     }
-    
-    func unobserve() {
-        NotificationCenter.default.removeObserver(self,
-                                                  name: NSNotification.Name.AVPlayerItemDidPlayToEndTime,
-                                                  object: nil)
-    }
-    
-    @objc
+
     func playerItemDidFinish() {
         guard let currentItemCopy = currentItem?.copy() as? AVPlayerItem else { return }
         insert(currentItemCopy, after: items().last)
