@@ -29,8 +29,8 @@ This is a maintained fork of the original [Brooklyn](https://github.com/pedrommc
 ## Features
 
 * Doesn't require internet connection
+* Homebrew support
 * Light & Dark theme
-* 4K resolution animations
 * Select which animations you want to see
 * Loop each animation how many times you want
 * Make the animations' order random
@@ -39,107 +39,77 @@ This is a maintained fork of the original [Brooklyn](https://github.com/pedrommc
     <img src="https://github.com/pedrommcarrasco/Brooklyn/blob/master/Design/preferenceMenu.png?raw=true" alt="Example"/>
 </p>
 
-## Installation
+## Installation 📦
 
-**Close System Preferences/Settings before installing.**
+Independently of how you install **Brooklyn**, please **close your System Preferences**.
 
-### Download from GitHub Releases
-
-1. Download the latest `Brooklyn.saver.zip` from [Releases](https://github.com/charliedowler/Brooklyn/releases)
-2. Unzip and double-click **Brooklyn.saver**
-3. If you see `"Brooklyn.saver" can't be opened because it is from an unidentified developer`, press `OK`
-4. Open **System Settings** > **Privacy & Security**
-5. Scroll down and click **Open Anyway**
-
-### Build from Source
-
-1. Clone this repository
-2. Open `Brooklyn.xcodeproj` in Xcode
-3. Build the project (Cmd+B)
-4. The built `Brooklyn.saver` will be in `DerivedData/Brooklyn/Build/Products/Release/`
-5. Double-click to install
-
-### Homebrew (Custom Tap)
-
-You can install via Homebrew using a custom tap:
-
-```shell
-brew tap charliedowler/brooklyn
-brew install --cask brooklyn-4k --no-quarantine
-```
-
-> Note: The tap needs to be created first. See [Creating a Homebrew Tap](#creating-a-homebrew-tap) below.
-
-### Post-Installation
-
-To set Brooklyn as your screen saver programmatically:
+Screen savers can be set programmatically with this Terminal command :
 
 ```shell
 defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName Brooklyn path "$HOME/Library/Screen Savers/Brooklyn.saver"
 ```
 
-## Uninstallation
+### Manual :hand:
 
-- Right-click on Brooklyn in System Settings > Screen Saver and select `Delete Brooklyn`, or
-- Delete `Brooklyn.saver` from `/Library/Screen Savers` or `~/Library/Screen Savers`
+1. [Click here to Download](https://github.com/pedrommcarrasco/Brooklyn/releases/download/2.1.0/Brooklyn.saver.zip)
+2. Open **Brooklyn.saver** (double click)
+3. `"Brooklyn.saver" can't be opened because it is from an unidentified developer` will appear, press `OK`
+4. Open `Preferences`
+5. Select `Security & Privacy`
+6. Select `General`
+7. On the bottom side, select `Open Anyway`
+
+### Homebrew 🍺
+
+1. Open terminal
+2. Enter `brew install --cask brooklyn --no-quarantine`
+
+## Uninstallation 🗑️
+
+### Manual :hand:
+
+- Right-click on Brooklyn in System Preferences and select `Delete Brooklyn`, or
+- Delete `Brooklyn.saver` either in `/Library/Screen Savers` or `/Users/USERNAME/Library/Screen Savers`. 
+
+### Homebrew 🍺
+
+1. Open terminal
+2. Enter `brew uninstall --cask brooklyn`
 
 ## Compatibility
 
 Requires macOS Sonoma (14.0) or above.
 
-## Troubleshooting
+## Troubleshooting 🤕
 
-The Brooklyn screen saver can be blocked by macOS as unidentified software.
+The Brooklyn screen saver can be blocked by the system as a malicious software. Sometimes on macOS Big Sur clicking `Open Anyway` in `Security & Privacy` is not fixing the issue.  
 
-To bypass quarantine, run this command in Terminal:
-
-```shell
-xattr -cr ~/Library/Screen\ Savers/Brooklyn.saver
-```
-
-If that doesn't work, try with sudo:
+To bypass this quarantine made by apple, you can use this command in your terminal :
 
 ```shell
-sudo xattr -cr ~/Library/Screen\ Savers/Brooklyn.saver
+sudo xattr -d com.apple.quarantine ~/"Library/Screen Savers/Brooklyn.saver"
 ```
 
-## Creating a Homebrew Tap
+## Support Brooklyn ❤️
 
-To distribute via Homebrew, create a tap repository:
+Hello there 👋
 
-1. Create a new repo named `homebrew-brooklyn`
-2. Add a file `Casks/brooklyn-4k.rb`:
+I’m Pedro, a Portuguese iOS Engineer since February 2017. I’m an avid OSS enthusiast and contributor - help by sharing, learn by what’s shared.
 
-```ruby
-cask "brooklyn-4k" do
-  version "3.0.0"
-  sha256 "YOUR_SHA256_HERE"
+I've built and open-sourced multiple frameworks and applications, including **[Brooklyn](https://github.com/pedrommcarrasco/Brooklyn)** and **[CocoaHub](https://cocoahub.app)**.
 
-  url "https://github.com/charliedowler/Brooklyn/releases/download/v#{version}/Brooklyn.saver.zip"
-  name "Brooklyn 4K"
-  desc "macOS screen saver with Apple Brooklyn event animations in 4K"
-  homepage "https://github.com/charliedowler/Brooklyn"
+I'm also a conference and meetup organizer, being part of **[SwiftAveiro](https://swiftaveiro.xyz)** and **[CocoaHeads Porto](https://www.meetup.com/CocoaHeads-Porto/)**.
 
-  screen_saver "Brooklyn.saver"
+If you enjoy my work and would like to help me continue it, please consider:
+* https://github.com/users/pedrommcarrasco/sponsorship
+* https://www.buymeacoffee.com/pedrommcarrasco
+* https://www.paypal.me/pedrommcarrasco
 
-  zap trash: [
-    "~/Library/Screen Savers/Brooklyn.saver",
-  ]
-end
-```
 
-3. Create a GitHub release with `Brooklyn.saver.zip`
-4. Update the sha256 in the cask file
+## Contributing  🙌 
 
-## Contributing
+Feel free to contribute to this project by providing [ideas](https://github.com/pedrommcarrasco/Brooklyn/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) or opening [pull requests](https://github.com/pedrommcarrasco/Brooklyn/pulls?q=is%3Apr+is%3Aopen+sort%3Aupdated-desc) with new features or solving an existing issue.
 
-Feel free to contribute by opening [issues](https://github.com/charliedowler/Brooklyn/issues) or [pull requests](https://github.com/charliedowler/Brooklyn/pulls).
+## License ⛔
 
-## License
-
-Brooklyn is available under the MIT license. See the [LICENSE](https://github.com/charliedowler/Brooklyn/blob/master/LICENSE) file for more information. Logo & original animations are Apple's property.
-
-## Credits
-
-- Original project by [Pedro Carrasco](https://github.com/pedrommcarrasco/Brooklyn)
-- 4K upscaling powered by [fx-upscale](https://github.com/finnvoor/fx-upscale)
+Brooklyn's available under the MIT license. See the [LICENSE](https://github.com/pedrommcarrasco/Brooklyn/blob/master/LICENSE) file for more information. Logo & original animations are Apple's property.
