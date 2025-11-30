@@ -80,8 +80,9 @@ struct PreferencesView: View {
                 HStack {
                     Text("Loops per animation:")
                     Picker("", selection: $viewModel.numberOfLoops) {
-                        ForEach(0..<31) { i in
-                            Text(i == 0 ? "Infinite" : "\(i)").tag(i)
+                        Text("Infinite").tag(1000)
+                        ForEach(0..<10) { i in
+                            Text("\(i)").tag(i)
                         }
                     }
                     .frame(width: 100)
