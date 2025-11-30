@@ -1,16 +1,32 @@
-**Brooklyn is not actively maintained, as it doesn’t generate income to justify the time investment. If you need a bug fixed, feel free to contact the author via email to discuss having it resolved for a fee.**
-
 ![](https://github.com/pedrommcarrasco/Brooklyn/blob/master/Design/logo.jpg?raw=true)
 
-> Screen Saver by [Pedro Carrasco](https://twitter.com/pedrommcarrasco) based on the animations presented during **[Apple Special Event](https://www.youtube.com/watch?v=bfHEnw6Rm-4)** (October 30, 2018) from the Brooklyn Academy of Music, Howard Gilman Opera House.
+> Screen Saver originally by [Pedro Carrasco](https://twitter.com/pedrommcarrasco) based on the animations presented during **[Apple Special Event](https://www.youtube.com/watch?v=bfHEnw6Rm-4)** (October 30, 2018) from the Brooklyn Academy of Music, Howard Gilman Opera House.
 
 <p align="center">
     <img src="https://github.com/pedrommcarrasco/Brooklyn/blob/master/Design/showcase.gif?raw=true" alt="Example"/>
 </p>
 
-![GitHub All Releases](https://img.shields.io/github/downloads/pedrommcarrasco/brooklyn/total.svg) [![Build Status](https://travis-ci.org/pedrommcarrasco/Brooklyn.svg?branch=master)](https://travis-ci.org/pedrommcarrasco/Brooklyn) ![GitHub contributors](https://img.shields.io/github/contributors/pedrommcarrasco/brooklyn.svg) [![apm](https://img.shields.io/apm/l/vim-mode.svg)](https://github.com/pedrommcarrasco/Brooklyn/blob/master/LICENSE)
+[![apm](https://img.shields.io/apm/l/vim-mode.svg)](https://github.com/charliedowler/Brooklyn/blob/master/LICENSE)
 
-## Features ✅
+## Fork Information
+
+This is a maintained fork of the original [Brooklyn](https://github.com/pedrommcarrasco/Brooklyn) screen saver with the following updates:
+
+### macOS Tahoe (26) Compatibility
+- Updated deployment target to macOS 14.0+ with Swift 6.0
+- Migrated preferences UI from XIB to SwiftUI
+- Fixed Swift 6 concurrency issues with `@MainActor` annotations
+- Replaced NotificationCenter observers with Combine publishers
+- Fixed code signing for screensaver extension
+- Fixed video positioning issues (jumping between center and corners)
+- Fixed settings persistence in screensaver extension context
+
+### 4K Video Upgrade
+- All 75 animation videos upscaled from 1080p to **4K (3840x2160)**
+- Used MetalFX AI-powered upscaling via [fx-upscale](https://github.com/finnvoor/fx-upscale)
+- Re-encoded to HEVC for optimal quality and file size
+
+## Features
 
 * Doesn't require internet connection
 * Homebrew support
@@ -60,9 +76,9 @@ defaults -currentHost write com.apple.screensaver moduleDict -dict moduleName Br
 1. Open terminal
 2. Enter `brew uninstall --cask brooklyn`
 
-## Compatibility 🔧
+## Compatibility
 
-Requires OS X El Capitan (10.11) or above.
+Requires macOS Sonoma (14.0) or above.
 
 ## Troubleshooting 🤕
 
